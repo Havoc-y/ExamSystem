@@ -4,7 +4,8 @@ module.exports = {
     login: async function (req, res, next) {
         var list = await Users.findAll();
         res.send({
-            'temp': req.query.userlist.username,
+            'username': req.body.username,
+            'password': req.body.password,
             'list': list,
             'meta': {
                 'status': res.statusCode,

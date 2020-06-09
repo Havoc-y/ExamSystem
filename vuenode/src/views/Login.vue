@@ -78,7 +78,7 @@ export default {
     loginForm () {
       this.$refs.loginRef.validate(async valid => {
         if (!valid) return
-        const result = await this.$http.get('/users/login', this.userlist)
+        const result = await this.$http.post('/api/login', this.userlist)
         console.log(result)
       })
     }
