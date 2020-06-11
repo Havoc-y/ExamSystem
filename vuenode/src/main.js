@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import axios from 'axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import http from './http'
 import './plugins/element.js'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/reset.css'
@@ -10,8 +10,8 @@ import './assets/css/global.css'
 import './assets/font/iconfont.css'
 
 Vue.config.productionTip = false
-axios.defaults.baseURL = 'http://localhost:3000'
-Vue.prototype.$http = axios
+
+Vue.prototype.$http = http
 
 new Vue({
   router,
