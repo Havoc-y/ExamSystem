@@ -1,5 +1,8 @@
 <template>
-  <el-form-item :prop="inputrules">
+  <el-form-item
+    :prop="inputrules"
+    :label="itemlable"
+  >
     <el-input
       :placeholder="inputlable"
       :prefix-icon="inputicon"
@@ -22,6 +25,6 @@ export default {
       this.$emit('loginevent', this.info)
     }
   },
-  props: ['inputlable', 'inputicon', 'inputrules']
+  props: ['inputlable', 'inputicon', 'inputrules', 'itemlable']
 }
 </script>

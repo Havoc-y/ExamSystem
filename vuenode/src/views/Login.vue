@@ -1,8 +1,8 @@
 <template>
   <div id="login">
-    <div class="login_box">
+    <div class="login_box content">
       <div class="login_title">
-        <h2>用户登录</h2>
+        <h1>用户登录</h1>
       </div>
       <el-form
         ref="loginRef"
@@ -22,17 +22,19 @@
           @loginevent="getPassword($event)"
         ></forminput>
       </el-form>
-      <div>
-        <a href="">>>新用户？请先注册</a>
-      </div>
-      <div class="login_button">
-        <el-button
-          type="warning"
-          @click="loginForm()"
-        >登录</el-button>
-      </div>
-      <div>
-        <a href="">>>忘记密码？</a>
+      <div class="button_foot">
+        <div>
+          <router-link to="/regist">>>新用户？请先注册</router-link>
+        </div>
+        <div class="login_button">
+          <el-button
+            type="warning"
+            @click="loginForm()"
+          >登录</el-button>
+        </div>
+        <div>
+          <router-link to="/forgetpassword">>>忘记密码？</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -88,26 +90,16 @@ export default {
 
 <style lang="scss" scoped>
 #login {
-  text-align: right;
   height: 100%;
   .login_title {
     text-align: center;
     color: #e6a23c;
   }
-  .login_box {
-    width: 450px;
-    height: 300px;
-    background-color: rgba($color: #fff, $alpha: 0.8);
-    border-radius: 5px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  .el-button {
-    width: 100%;
+  .button_foot {
+    text-align: right;
+    .el-button {
+      width: 100%;
+    }
   }
 }
 </style>

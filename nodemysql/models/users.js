@@ -21,8 +21,8 @@ var usersModel = mysql.define("users",{
     password: {
         type: sequelize.STRING
     },
-    token: {
-        type: sequelize.UUID
+    identify: {
+        type: sequelize.INTEGER
     }
 },
 {
