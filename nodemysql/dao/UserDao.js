@@ -10,8 +10,9 @@ module.exports = {
         });
     },
     // 添加用户信息
-    addUserInfo: function (username, password, identify) {
+    addUserInfo: function (id, username, password, identify) {
         return users.create({
+            id: id,
             username: username,
             password: password,
             identify: identify

@@ -15,15 +15,15 @@ module.exports = {
                 }
             })
         } else {
-            // var valid = require('bcrypt').compareSync(password, list.password)
-            // if (!valid) {
-            //     return res.status(422).send({
-            //         'meta': {
-            //             'status': res.statusCode,
-            //             'msg': '用户名或密码错误'
-            //         }
-            //     })
-            // }
+            var valid = bcrypt.compareSync(password, list.password)
+            if (!valid) {
+                return res.status(422).send({
+                    'meta': {
+                        'status': res.statusCode,
+                        'msg': '用户名或密码错误'
+                    }
+                })
+            }
             res.send({
                 'list': list,
                 'meta': {
@@ -35,10 +35,7 @@ module.exports = {
     },
     // 注册
     regist: async function (req, res, next) {
-        let salt = bcrypt.genSaltSync(10);
         let { username, password, identify } = req.body;
-        // 对密码进行加密
-        var hash = bcrypt.hashSync(password, salt);
         // 判断用户是否已经注册
         var list = await userDao.findUserInfoByUsername(username);
         if (list) {
@@ -49,6 +46,14 @@ module.exports = {
                 }
             })
         }
-        await Users.addUserInfo(username, hash, identify);
+        let salt = await bcrypt.genSalt(10);
+        let hash = await bcrypt.hash(password, salt);
+        await userDao.addUserInfo(0, username, hash, identify);
+        res.send({
+            'meta': {
+                'status': res.statusCode,
+                'msg': '注册成功'
+            }
+        });
     }
 }
