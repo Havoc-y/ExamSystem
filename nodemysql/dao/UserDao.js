@@ -17,5 +17,15 @@ module.exports = {
             password: password,
             identify: identify
         })
+    },
+    // 根据id修改用户信息
+    updateUserInfo: function (id, token) {
+        return users.update({
+            token: token
+        }, {
+            where: {
+                id: id
+            }
+        })
     }
 }

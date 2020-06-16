@@ -1,5 +1,6 @@
 var userDao = require('../dao/UserDao')
 var bcrypt = require('bcryptjs')
+var jwt = require('jsonwebtoken')
 
 module.exports = {
     // 登录
@@ -24,8 +25,14 @@ module.exports = {
                     }
                 })
             }
+            // 登陆成功创建token 根据jwt
+            // jwt.sign(需要加密的数据，密文，有效期{expiresIn})
+            var token = jwt.sign({ list }, 'Ysy')
             res.send({
-                'list': list,
+                data:{
+                    list:list,
+                    token:token
+                },
                 'meta': {
                     'status': res.statusCode,
                     'msg': '登陆成功'
@@ -46,8 +53,11 @@ module.exports = {
                 }
             })
         }
+        // 对密码进行加密 salt:加密的等级 hash:加密后的密码
         let salt = await bcrypt.genSalt(10);
         let hash = await bcrypt.hash(password, salt);
+        // 将处理后的数据通过userDao存进数据库
+        // id在数据库中设置的是自动增长，所以传0即可
         await userDao.addUserInfo(0, username, hash, identify);
         res.send({
             'meta': {

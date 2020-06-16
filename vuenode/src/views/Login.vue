@@ -80,8 +80,17 @@ export default {
     loginForm () {
       this.$refs.loginRef.validate(async valid => {
         if (!valid) return
-        const result = await this.$http.post('/login', this.userlist)
-        console.log(result)
+        const { data: res } = await this.$http.post('/login', this.userlist)
+        if (res.meta.status === 200) {
+          console.log(res)
+          this.$message.success(res.meta.msg)
+          window.sessionStorage.setItem('token', res.data.token)
+          if (res.data.list.identify === 1) {
+            this.$router.push('/teacher')
+          } else {
+            this.$router.push('/student')
+          }
+        }
       })
     }
   }

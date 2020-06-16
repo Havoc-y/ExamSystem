@@ -1,6 +1,4 @@
-html,
-body,
-#app{
+*{
     margin: 0;
     padding: 0;
 }
@@ -19,4 +17,9 @@ a:havor{
 }
 a:active{
     text-decoration: none;
+}
+
+ul,
+li{
+    list-style: none;
 }
