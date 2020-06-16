@@ -3,7 +3,10 @@
     <el-header>
       <div class="hdicon">
         <span class="icon"></span>
-        <span class="icontitle">啊啊啊老师</span>
+        <span
+          class="icontitle"
+          :v-model="userid"
+        >{{userid}}老师</span>
       </div>
       <div class="hdtitle">
         <span :v-model="header">{{header}}</span>
@@ -18,31 +21,41 @@
     <el-container>
       <el-aside width="200px">
         <ul>
-          <li
+          <router-link
+            to="teacher/topicall"
             v-for="(data,index) in itemlist"
             :key="index"
             @click="handleClickLi(index)"
-          >
-            {{data}}
-          </li>
+            tag="li"
+          >{{data}}</router-link>
         </ul>
       </el-aside>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
 export default {
+  mounted () {
+    var userInfo = JSON.parse(sessionStorage.getItem('list'))
+    this.userid = userInfo.username
+  },
   data () {
     return {
+      pathname: '',
+      userid: '',
       header: '试题库',
-      itemlist: ['试题库', '试题列表', '学生错题情况']
+      itemlist: ['试题库', '试题列表', '学生错题情况'],
+      pathlist: ['topicall', 'topiclist', 'studentwrong']
     }
   },
   methods: {
     handleClickLi: function (index) {
       this.header = this.itemlist[index]
+      this.path = this.pathlist[index]
     },
     handleButtonEdit: function () {
       window.sessionStorage.clear()
@@ -55,6 +68,10 @@ export default {
 <style lang="scss" scoped>
 .el-container {
   height: 100%;
+  a {
+    color: black;
+    font-size: 15px;
+  }
   .el-header {
     padding: 0;
     margin: 0;
@@ -95,11 +112,12 @@ export default {
       li {
         height: 50px;
         line-height: 50px;
-        transition: background-color 0.5s;
-        -webkit-transition: background-color 0.5s;
+        transition: background-color 0.5s, color 0.3s, color 0.3s;
+        -webkit-transition: background-color 0.5s, color 0.3s, color 0.3s;
         cursor: pointer;
       }
       li:hover {
+        color: #e6a23c;
         background-color: rgba($color: #dcd3b2, $alpha: 0.8);
       }
     }

@@ -5,6 +5,9 @@ import Regist from '../views/Regist'
 import ForgetPassword from '../views/ForgetPassword'
 import Teacher from '../views/Teacher'
 import Student from '../views/Student'
+import TopicAll from '../views/TopicAll'
+import TopicList from '../views/TopicList'
+import StudentWrong from '../views/StudentWrong'
 
 Vue.use(VueRouter)
 
@@ -32,7 +35,24 @@ const routes = [
   {
     path: '/teacher',
     name: 'teacher',
-    component: Teacher
+    component: Teacher,
+    children: [
+      {
+        path: '/topicall',
+        name: 'topicall',
+        component: TopicAll
+      },
+      {
+        path: '/topiclist',
+        name: 'topiclist',
+        component: TopicList
+      },
+      {
+        path: '/studentwrong',
+        name: 'studentwrong',
+        component: StudentWrong
+      }
+    ]
   },
   {
     path: '/student',

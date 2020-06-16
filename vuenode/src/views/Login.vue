@@ -85,6 +85,7 @@ export default {
           console.log(res)
           this.$message.success(res.meta.msg)
           window.sessionStorage.setItem('token', res.data.token)
+          window.sessionStorage.setItem('list', JSON.stringify(res.data.list))
           if (res.data.list.identify === 1) {
             this.$router.push('/teacher')
           } else {
@@ -100,6 +101,9 @@ export default {
 <style lang="scss" scoped>
 #login {
   height: 100%;
+  a{
+    color: #e6a23c;
+  }
   .login_title {
     text-align: center;
     color: #e6a23c;
