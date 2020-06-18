@@ -22,12 +22,12 @@
       <el-aside width="200px">
         <ul>
           <router-link
-            to="teacher/topicall"
             v-for="(data,index) in itemlist"
+            :to="{name:data.link}"
             :key="index"
             @click="handleClickLi(index)"
             tag="li"
-          >{{data}}</router-link>
+          >{{data.name}}</router-link>
         </ul>
       </el-aside>
       <el-main>
@@ -48,14 +48,25 @@ export default {
       pathname: '',
       userid: '',
       header: '试题库',
-      itemlist: ['试题库', '试题列表', '学生错题情况'],
-      pathlist: ['topicall', 'topiclist', 'studentwrong']
+      itemlist: [
+        {
+          name: '试题库',
+          link: 'topicall'
+        },
+        {
+          name: '创建试题列表',
+          link: 'topiclist'
+        },
+        {
+          name: '学生错题列表',
+          link: 'studentwrong'
+        }
+      ]
     }
   },
   methods: {
     handleClickLi: function (index) {
-      this.header = this.itemlist[index]
-      this.path = this.pathlist[index]
+      this.header = this.itemlist[index].name
     },
     handleButtonEdit: function () {
       window.sessionStorage.clear()
