@@ -23,9 +23,10 @@
         <ul>
           <router-link
             v-for="(data,index) in itemlist"
+            :class="{clickli:changeli==index}"
             :to="{name:data.link}"
             :key="index"
-            @click="handleClickLi(index)"
+            @click.native="handleClickLi(index)"
             tag="li"
           >{{data.name}}</router-link>
         </ul>
@@ -61,12 +62,15 @@ export default {
           name: '学生错题列表',
           link: 'studentwrong'
         }
-      ]
+      ],
+      changeli: 0
     }
   },
   methods: {
     handleClickLi: function (index) {
+      console.log(index)
       this.header = this.itemlist[index].name
+      this.changeli = index
     },
     handleButtonEdit: function () {
       window.sessionStorage.clear()
@@ -136,6 +140,10 @@ export default {
   .el-main {
     padding: 0;
     margin: 0;
+  }
+  .clickli {
+    color: #e6a23c;
+    background-color: rgba($color: #dcd3b2, $alpha: 0.8);
   }
 }
 </style>

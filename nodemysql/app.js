@@ -8,6 +8,7 @@ var cors = require('cors');
 
 var usersRouter = require('./routes/api/users');
 var topicallsRouter = require('./routes/api/topicall')
+var topicsRouter = require('./routes/api/topics')
 
 var app = express();
 
@@ -32,7 +33,8 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', usersRouter);
-app.use('/', topicallsRouter)
+app.use('/', topicallsRouter);
+app.use('/',topicsRouter);
 
 
 // catch 404 and forward to error handler

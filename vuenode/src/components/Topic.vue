@@ -12,5 +12,6 @@ div {
   border-radius: 3px;
   margin-right: 20px;
   margin-top: 20px;
+  text-align: center;
 }
 </style>

@@ -8,6 +8,8 @@ import Student from '../views/Student'
 import TopicAll from '../views/TopicAll'
 import TopicList from '../views/TopicList'
 import StudentWrong from '../views/StudentWrong'
+import TopicChoose from '../components/TopicChoose'
+import TopicTk from '../components/TopicTk'
 
 Vue.use(VueRouter)
 
@@ -34,21 +36,41 @@ const routes = [
   },
   {
     path: '/teacher',
+    redirect: '/teacher/topicall'
+  },
+  {
+    path: '/teacher',
     name: 'teacher',
     component: Teacher,
     children: [
       {
-        path: '/topicall',
+        path: '/teacher/topicall',
         name: 'topicall',
         component: TopicAll
       },
       {
-        path: '/topiclist',
-        name: 'topiclist',
-        component: TopicList
+        path: '/teacher/topiclist',
+        redirect: '/teacher/topiclist/topicchoose'
       },
       {
-        path: '/studentwrong',
+        path: '/teacher/topiclist',
+        name: 'topiclist',
+        component: TopicList,
+        children: [
+          {
+            path: '/teacher/topiclist/topicchoose',
+            name: 'topicchoose',
+            component: TopicChoose
+          },
+          {
+            path: '/teacher/topiclist/topictk',
+            name: 'topictk',
+            component: TopicTk
+          }
+        ]
+      },
+      {
+        path: '/teacher/studentwrong',
         name: 'studentwrong',
         component: StudentWrong
       }
