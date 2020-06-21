@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+a:live{
+    text-decoration: none;
+}
+a:visited{
+    text-decoration: none;
+}
+a:havor{
+    text-decoration: none;
+}
+a:active{
+    text-decoration: none;
+}
+
+ul,
+li{
+    list-style: none;
+}
